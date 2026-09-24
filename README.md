@@ -4,7 +4,7 @@ StudyFlow is a student task management web application built with Flask, SQLite,
 
 It allows students to organize academic tasks by course, deadline, priority, and completion status while providing search, filtering, and task summary features.
 
-This project was originally built as my final project for **Harvard's CS50's Introduction to Computer Science (CS50x)** and represents the main project from the computer science foundations phase of my CS/AI/ML learning roadmap.
+This project was originally built as my final project for **Harvard University's CS50x (CS50's Introduction to Computer Science)** and represents the main project from the computer science foundations phase of my CS/AI/ML learning roadmap.
 
 ## Demo
 
@@ -429,7 +429,7 @@ Possible future improvements include:
 
 ## Project Context
 
-StudyFlow was originally developed as my final project for **CS50's Introduction to Computer Science**.
+StudyFlow was originally developed as my final project for **Harvard University's CS50x (CS50's Introduction to Computer Science)**.
 
 It also serves as the main showcase project from **Phase 2 — Computer Science Foundations** of my broader CS/AI/ML learning roadmap.
 
