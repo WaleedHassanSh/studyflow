@@ -18,7 +18,7 @@
       <p class="error-message">{{ message }}</p>
       {% endif %}
       <form class="task-form" action="/add" method="post">
-        <label for="course">Course</label>
+        <label class="sr-only" for="course">Course</label>
         <input
           id="course"
           class="form-input"
@@ -30,7 +30,7 @@
           required
         />
 
-        <label for="title">Task Title</label>
+        <label class="sr-only" for="title">Task Title</label>
         <input
           id="title"
           class="form-input"
@@ -40,7 +40,7 @@
           required
         />
 
-        <label for="deadline">Deadline</label>
+        <label class="sr-only" for="deadline">Deadline</label>
         <input
           id="deadline"
           class="form-input"
@@ -49,7 +49,7 @@
           required
         />
 
-        <label for="priority">Priority</label>
+        <label class="sr-only" for="priority">Priority</label>
         <select id="priority" class="form-input" name="priority" required>
           <option value="" disabled selected>Select Priority</option>
           <option value="low">Low</option>

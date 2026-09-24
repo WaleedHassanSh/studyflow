@@ -54,24 +54,28 @@ def add():
     if request.method == "GET":
         return render_template("add.html")
 
-    else:
-        course = request.form.get("course")
-        title = request.form.get("title")
-        deadline = request.form.get("deadline")
-        priority = request.form.get("priority")
+    course = (request.form.get("course") or "").strip()
+    title = (request.form.get("title") or "").strip()
+    deadline = request.form.get("deadline")
+    priority = request.form.get("priority")
 
-        if not course or not title or not deadline or not priority:
-            return render_template("add.html", message="Please fill all fields.")
+    valid_priorities = {"low", "medium", "high"}
 
-        db.execute(
-            "INSERT INTO tasks(course, title, deadline, priority) VALUES (?, ?, ?, ?)",
-            course,
-            title,
-            deadline,
-            priority,
+    if not course or not title or not deadline or priority not in valid_priorities:
+        return render_template(
+            "add.html",
+            message="Please fill all fields correctly.",
         )
 
-        return redirect("/")
+    db.execute(
+        "INSERT INTO tasks(course, title, deadline, priority) VALUES (?, ?, ?, ?)",
+        course,
+        title,
+        deadline,
+        priority,
+    )
+
+    return redirect("/")
 
 
 @app.route("/mark_completed", methods=["POST"])
