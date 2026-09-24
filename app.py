@@ -60,13 +60,7 @@ def add():
         deadline = request.form.get("deadline")
         priority = request.form.get("priority")
 
-        if (
-            not course
-            or not title
-            or not deadline
-            or not priority
-            or priority == "none"
-        ):
+        if not course or not title or not deadline or not priority:
             return render_template("add.html", message="Please fill all fields.")
 
         db.execute(

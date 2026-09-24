@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
@@ -15,32 +18,45 @@
       <p class="error-message">{{ message }}</p>
       {% endif %}
       <form class="task-form" action="/add" method="post">
+        <label for="course">Course</label>
         <input
+          id="course"
           class="form-input"
           type="text"
           name="course"
           placeholder="Course"
           autofocus
           autocomplete="off"
+          required
         />
+
+        <label for="title">Task Title</label>
         <input
+          id="title"
           class="form-input"
           type="text"
           name="title"
           placeholder="Task Title"
+          required
         />
+
+        <label for="deadline">Deadline</label>
         <input
+          id="deadline"
           class="form-input"
           type="date"
           name="deadline"
-          placeholder="Deadline"
+          required
         />
-        <select class="form-input" name="priority">
-          <option value="none">Select Priority</option>
+
+        <label for="priority">Priority</label>
+        <select id="priority" class="form-input" name="priority" required>
+          <option value="" disabled selected>Select Priority</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
+
         <button class="submit-btn" type="submit">Submit</button>
       </form>
       <br />

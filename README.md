@@ -254,6 +254,8 @@ It is not included in version control and can be recreated using `schema.sql`.
 
 ## Installation
 
+Tested with Python 3.12.
+
 Clone the repository:
 
 ```bash
