@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+
+    <title>Add Task</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add New Task</h1>
+      {% if message %}
+      <p class="error-message">{{ message }}</p>
+      {% endif %}
+      <form class="task-form" action="/add" method="post">
+        <input
+          class="form-input"
+          type="text"
+          name="course"
+          placeholder="Course"
+          autofocus
+          autocomplete="off"
+        />
+        <input
+          class="form-input"
+          type="text"
+          name="title"
+          placeholder="Task Title"
+        />
+        <input
+          class="form-input"
+          type="date"
+          name="deadline"
+          placeholder="Deadline"
+        />
+        <select class="form-input" name="priority">
+          <option value="none">Select Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button class="submit-btn" type="submit">Submit</button>
+      </form>
+      <br />
+      <a class="back-link" href="/">Back to Home</a>
+    </div>
+  </body>
+</html>

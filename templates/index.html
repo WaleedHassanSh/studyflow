@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+
+    <title>StudyFlow</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>StudyFlow</h1>
+      <p>A student planner for courses, tasks, and deadlines.</p>
+      <a class="add-link" href="/add">Add Task</a>
+
+      <div class="stats">
+        <h2>Task Count</h2>
+        <p class="card">Total tasks: {{ total_tasks["total_tasks"] }}</p>
+        <p class="card">Pending tasks: {{ pending_tasks["pending_tasks"] }}</p>
+        <p class="card">
+          Completed tasks: {{ completed_tasks["completed_tasks"] }}
+        </p>
+      </div>
+
+      <form class="search-form" action="/" method="get">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Search by course or task title"
+          name="search"
+          autocomplete="off"
+        />
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+
+      <h2>Already Added Tasks</h2>
+      <form class="filters" action="/" method="get">
+        <button
+          class="filter-btn"
+          type="submit"
+          name="selected_filter"
+          value="all"
+        >
+          Show all tasks
+        </button>
+        <button
+          class="filter-btn"
+          type="submit"
+          name="selected_filter"
+          value="pending"
+        >
+          Show pending tasks
+        </button>
+        <button
+          class="filter-btn"
+          type="submit"
+          name="selected_filter"
+          value="completed"
+        >
+          Show completed tasks
+        </button>
+      </form>
+
+      {% if tasks %}
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Title</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Complete</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in tasks %}
+          <tr>
+            <td>{{ row["course"] }}</td>
+            <td>{{ row["title"] }}</td>
+            <td>{{ row["deadline"] }}</td>
+            <td>{{ row["priority"] }}</td>
+            <td>{{ row["status"] }}</td>
+            <td>
+              {% if row["status"] == "pending" %}
+              <form action="/mark_completed" method="post">
+                <button
+                  class="complete-btn"
+                  name="id"
+                  type="submit"
+                  value="{{ row['id'] }}"
+                >
+                  Mark Completed
+                </button>
+              </form>
+              {% else %} Completed {% endif %}
+            </td>
+            <td>
+              <form action="/delete_task" method="post">
+                <button
+                  class="delete-btn"
+                  name="id"
+                  type="submit"
+                  value="{{ row['id'] }}"
+                >
+                  Delete Task
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No tasks exist yet.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
